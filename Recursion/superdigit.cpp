@@ -3,13 +3,10 @@ using namespace std;
 
 int sum(int n)
 {
-    int s=0;
-    while(n>0)
-    {
-        s+=n%10;
-        n=n/10;
-    }
-    return s;
+    if(n<10)
+        return n;
+    else
+        return n%10+sum(n/10);
 }
 int solve(int n)
 {
