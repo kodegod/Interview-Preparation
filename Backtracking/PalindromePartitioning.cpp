@@ -13,25 +13,26 @@ public:
         }
         return true;
     }
-    void solve(string s,int i,vector<string> temp,vector<vector<string>>&v)
+    void solve(string&op,int i,vector<string>&temp,vector<vector<string>>&v)
     {
-        if(i==s.size())
+        if(i==op.size())
         {
             v.push_back(temp);
             return;
         }
-        for(int j=i+1; j<=s.size(); j++)
+        for(int j=1; j<=op.size()-i; j++)
         {
-            string l=s.substr(i,j);
-            if(ispal(l)==true)
+            string s=op.substr(i,j);
+            if(ispal(s))
             {
-                temp.push_back(l);
-                solve(s,i+j,temp,v);
+                temp.push_back(s);
+                solve(op,i+j,temp,v);
                 temp.pop_back();
             }
         }
     }
-    vector<vector<string>> partition(string s) {
+    vector<vector<string>> partition(string s)
+    {
         vector<vector<string>> v;
         vector<string> temp;
         solve(s,0,temp,v);
