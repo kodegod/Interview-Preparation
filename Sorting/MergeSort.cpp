@@ -17,15 +17,10 @@ void merge(vector<int>&v, int l1, int r1, int l2, int r2)
 	vector<int> c(r1 - l1 + 1 + r2 - l2 + 1);
 	while (i <= r1 && j <= r2)
 	{
-		if (v[i] < v[j])
+		if (v[i] <= v[j])
 			c[k++] = v[i++];
-		else if (v[i] > v[j])
-			c[k++] = v[j++];
 		else
-		{
-			c[k++] = v[i++];
 			c[k++] = v[j++];
-		}
 	}
 	while (i <= r1)
 		c[k++] = v[i++];
