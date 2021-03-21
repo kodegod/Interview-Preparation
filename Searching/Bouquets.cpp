@@ -6,21 +6,19 @@ public:
         int n=v.size();
         vector<int> cnt;
         int temp=0;
+        int ans=0;
         for(int i=0; i<n; i++)
         {
             if(v[i]<=mid)
                 temp++;
             else
             {
-                cnt.push_back(temp);
+                ans+=temp/k;
                 temp=0;
             }    
         }
         if(temp>0)
-            cnt.push_back(temp);
-        int ans=0;
-        for(auto it:cnt)
-            ans+=it/k;
+            ans+=temp/k;
         if(ans>=m)
             return true;
         return false;
