@@ -26,12 +26,18 @@ public:
             return -1;
         }
         int k=findPivot(v,n);
-        auto it=lower_bound(v.begin(),v.begin()+k,target);
-        if(it!=v.begin()+k+1&&v[it-v.begin()]==target)
-            return it-v.begin();
-        auto it2=lower_bound(v.begin()+k+1,v.end(),target);
-        if(it2!=v.end()&&v[it2-v.begin()]==target)
-            return it2-v.begin();
+        if(target<=v[n-1])
+        {
+            auto it=lower_bound(v.begin()+k+1,v.end(),target);
+            if(it!=v.end()&&v[it-v.begin()]==target)
+                return it-v.begin();
+        }
+        if(target>v[n-1])
+        {
+            auto it=lower_bound(v.begin(),v.begin()+k,target);
+            if(it!=v.begin()+k+1&&v[it-v.begin()]==target)
+                return it-v.begin();
+        }
         return -1;
     }
 };
