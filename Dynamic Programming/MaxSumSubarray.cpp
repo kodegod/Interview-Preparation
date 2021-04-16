@@ -19,6 +19,9 @@ int32_t main()
 	dp[0] = v[0];
 	for (int i = 1; i < n; i++)
 		dp[i] = v[i] + max(dp[i - 1], (int)0);
-	cout << dp[n - 1];
+	int ans=INT_MIN;
+	for(int i=0; i<n; i++)
+		ans=max(ans,dp[i]);
+	cout << ans;
 	return 0;
 }
