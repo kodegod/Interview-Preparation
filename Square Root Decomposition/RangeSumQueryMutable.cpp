@@ -5,8 +5,9 @@ class NumArray {
 public:
     NumArray(vector<int>& nums) {
         int n=nums.size();
-        b=(int)sqrt(n)+1;
-        block.resize(b+1,0);
+        b=sqrt(n);
+        int sz=(n+b-1)/b;
+        block.resize(sz,0);
         arr.resize(n,0);
         for(int i=0; i<n; i++)
         {
