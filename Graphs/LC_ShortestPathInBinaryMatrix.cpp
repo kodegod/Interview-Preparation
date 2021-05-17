@@ -22,12 +22,9 @@ public:
                 int b=yy+dir[i][1];
                 if(a<0 || b<0 || a>=n || b>=n || grid[a][b]==1)
                     continue;
-                if(level.find({a,b})!=level.end())
-                    level[{a,b}]=min(level[{a,b}],level[{xx,yy}]+1);
-                else
-                    level[{a,b}]=level[{xx,yy}]+1;
                 if(!visited[{a,b}])
                 {
+                    level[{a,b}]=1+level[{xx,yy}];
                     q.push({a,b});
                     visited[{a,b}]=true;
                 }
