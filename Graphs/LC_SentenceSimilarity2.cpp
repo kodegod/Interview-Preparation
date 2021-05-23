@@ -31,16 +31,14 @@ public:
             par[pairs[i][0]]=pairs[i][0];
             par[pairs[i][1]]=pairs[i][1];
         }
-        for(int i=0; i<words1.size(); i++)
-            par[words1[i]]=words1[i];
-        for(int i=0; i<words1.size(); i++)
-            par[words2[i]]=words2[i];
         for(int i=0; i<pairs.size(); i++)
             merge(pairs[i][0],pairs[i][1]);
         for(int i=0; i<words1.size(); i++)
         {
             if(words1[i]==words2[i])
                 continue;
+            if(par.find(words1[i])==par.end() || par.find(words2[i])==par.end())
+                return false;
             string a=get_root(words1[i]);
             string b=get_root(words2[i]);
             if(a!=b)
