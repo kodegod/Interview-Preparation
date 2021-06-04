@@ -22,3 +22,40 @@ public:
         return ans[dst][k+1];
     }
 };
+
+// Dijkstra variation (better)
+
+class Solution {
+public:
+    map<int,vector<pair<int,int>>> g;
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        for(int i=0; i<flights.size(); i++)
+            g[flights[i][0]].push_back({flights[i][1],flights[i][2]});
+        vector<int> ans(n,INT_MAX);
+        queue<pair<int,int>> q;
+        q.push({src,0});
+        ans[src]=0;
+        k++;
+        while(!q.empty())
+        {
+            if(k==0)
+                break;
+            int len=q.size();
+            while(len--)
+            {
+                pair<int,int> curr=q.front();
+                q.pop();
+                for(auto it:g[curr.first])
+                {
+                    if(ans[it.first]>it.second + curr.second)
+                    {
+                        ans[it.first]=curr.second+it.second;
+                        q.push({it.first,ans[it.first]});
+                    }
+                }
+            }
+            k--;
+        }
+        return ans[dst]==INT_MAX?-1:ans[dst];
+    }
+};
