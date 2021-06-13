@@ -24,9 +24,14 @@ public:
             if(row[a]>0 || col[b]>0 || dia1[a+b]>0 || dia2[a-b]>0)
             {
                 ans.push_back(1);
-                vector<vector<int>> temp;
                 if(lamp[{a,b}]==true)
-                    temp.push_back({a,b});
+                {
+                    row[a]--;
+                    col[b]--;
+                    dia1[a+b]--;
+                    dia2[a-b]--;
+                    lamp[{a,b}]=false;
+                }
                 for(int k=0; k<8; k++)
                 {
                     int x=queries[i][0]+dir[k][0];
@@ -34,17 +39,13 @@ public:
                     if(x<0||y<0||x>=n||y>=n)
                         continue;
                     if(lamp[{x,y}]==true)
-                        temp.push_back({x,y});
-                }
-                for(int k=0; k<temp.size(); k++)
-                {
-                    int x=temp[k][0];
-                    int y=temp[k][1];
-                    row[x]--;
-                    col[y]--;
-                    dia1[x+y]--;
-                    dia2[x-y]--;
-                    lamp[{x,y}]=false;
+                    {
+                        row[x]--;
+                        col[y]--;
+                        dia1[x+y]--;
+                        dia2[x-y]--;
+                        lamp[{x,y}]=false;
+                    }
                 }
             }
             else
