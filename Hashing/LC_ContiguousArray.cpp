@@ -1,5 +1,7 @@
 //https://leetcode.com/problems/contiguous-array/
 
+// Very good Q
+
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
