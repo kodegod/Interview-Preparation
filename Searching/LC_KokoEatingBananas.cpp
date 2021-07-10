@@ -1,4 +1,7 @@
 //https://leetcode.com/problems/koko-eating-bananas/
+
+// BS on answer
+
 class Solution {
 public:
     bool good(vector<int>&v,int h,int n,int mid)
