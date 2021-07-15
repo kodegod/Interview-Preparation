@@ -39,3 +39,32 @@ public:
         return curr.size();
     }
 };
+
+
+
+// Not using inbuilt binary search
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> curr;
+        for(int k=0; k<n; k++)
+        {
+            int i=0,j=curr.size();
+            while(i<j)
+            {
+                int mid=i+(j-i)/2;
+                if(curr[mid]<nums[k])
+                    i=mid+1;
+                else 
+                    j=mid;
+            }
+            if(i==curr.size())
+                curr.push_back(nums[k]);
+            else
+                curr[i]=nums[k];
+        }
+        return curr.size();
+    }
+};
