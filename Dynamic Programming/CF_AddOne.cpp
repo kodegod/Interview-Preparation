@@ -25,8 +25,8 @@ int32_t main()
     for (i = 1; i < 200005; i++)
     {
         for (int j = 0; j < 9; j++)
-            dp[i][j] = dp[i - 1][j + 1];
-        dp[i][9] = dp[i - 1][0] + dp[i - 1][1];
+            dp[i][j] = dp[i - 1][j + 1] % 1000000007;
+        dp[i][9] = (dp[i - 1][0] + dp[i - 1][1]) % 1000000007;
     }
     int t;
     cin >> t;
@@ -38,10 +38,11 @@ int32_t main()
         while (n > 0)
         {
             int curr = n % 10;
-            ans += dp[m][curr];
+            ans += dp[m][curr] % 1000000007;
+            ans = ans % 1000000007;
             n /= 10;
         }
-        cout << ans << endl;
+        cout << ans % 1000000007 << endl;
     }
     return 0;
 }
