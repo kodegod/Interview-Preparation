@@ -5,6 +5,8 @@ public:
     int numWays(int n, int k) {
         vector<int> dp_s(n,0);
         vector<int> dp_d(n,0);
+        // dp_s[i] means all the possible combinations where last two are same
+        // dp_d[i] means all the possible combinations where last two are different
         dp_s[0]=k;
         dp_d[0]=k;
         if(n==1)
