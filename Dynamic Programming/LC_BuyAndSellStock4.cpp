@@ -18,3 +18,26 @@ public:
         return dp[n-1][0];
     }
 };
+
+
+// another version 
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int hasStock[n];
+        int noStock[n];
+        hasStock[0] = -prices[0];
+        noStock[0] = 0;
+        for(int i=1; i<n; i++)
+        {
+            if(i==1)
+                hasStock[i] = max(hasStock[i-1], noStock[i-1] - prices[i]);
+            else
+                hasStock[i] = max(hasStock[i-1], noStock[i-2] - prices[i]);
+            noStock[i] = max(noStock[i-1], hasStock[i-1] + prices[i]);
+        }
+        return noStock[n-1];
+    }
+};
