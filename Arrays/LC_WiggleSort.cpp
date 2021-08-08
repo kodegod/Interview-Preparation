@@ -6,12 +6,6 @@ public:
         int n = nums.size();
         if(n==1)
             return;
-        if(n==2)
-        {
-            if(nums[0]>nums[1])
-                swap(nums[0],nums[1]);
-            return;
-        }
         for(int i=1; i<n; i+=2)
         {
             if(i==n-1)
