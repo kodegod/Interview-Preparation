@@ -1,15 +1,17 @@
 //https://leetcode.com/problems/implement-trie-prefix-tree/
 
 class Node {
-    public:
+public:
     char data;
     bool isTerminal;
-    map<char,Node*> children;
+    Node* children[26];
     
     Node(char ch)
     {
-        this->data = ch;
+        data = ch;
         isTerminal = false;
+        for(int i=0; i<26; i++)
+            children[i] = NULL;
     }
 };
 
@@ -18,20 +20,20 @@ public:
     /** Initialize your data structure here. */
     Node* root;
     Trie() {
-        this->root = new Node('\0');
+        root = new Node('\0');
     }
     
     /** Inserts a word into the trie. */
     void insert(string word) {
-        Node* temp = this->root;
+        Node* temp = root;
         for(int i=0; i<word.size(); i++)
         {
-            if(temp->children.count(word[i]))
-                temp = temp->children[word[i]];
+            if(temp->children[word[i]-'a'] != NULL)
+                temp = temp->children[word[i]-'a'];
             else
             {
-                temp->children[word[i]] = new Node(word[i]);
-                temp = temp->children[word[i]];
+                temp->children[word[i]-'a'] = new Node(word[i]);
+                temp = temp->children[word[i]-'a'];
             }
         }
         temp->isTerminal = true;
@@ -39,11 +41,11 @@ public:
     
     /** Returns if the word is in the trie. */
     bool search(string word) {
-        Node *temp = this->root;
+        Node *temp = root;
         for(int i=0; i<word.size(); i++)
         {
-            if(temp->children.count(word[i]))
-                temp = temp->children[word[i]];
+            if(temp->children[word[i]-'a'] != NULL)
+                temp = temp->children[word[i]-'a'];
             else
                 return false;
         }
@@ -52,11 +54,11 @@ public:
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
-        Node *temp = this->root;
+        Node *temp = root;
         for(int i=0; i<prefix.size(); i++)
         {
-            if(temp->children.count(prefix[i]))
-                temp = temp->children[prefix[i]];
+            if(temp->children[prefix[i]-'a'] != NULL)
+                temp = temp->children[prefix[i]-'a'];
             else
                 return false;
         }
