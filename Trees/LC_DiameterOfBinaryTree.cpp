@@ -9,7 +9,7 @@ public:
             return 0;
         int d1=dia(root->left);
         int d2=dia(root->right);
-        ans=max(ans,max(1+d1+d2,max(d1,d2)));
+        ans=max(ans,1+d1+d2);
         return 1+max(d1,d2);
     }
     int diameterOfBinaryTree(TreeNode* root) {
